@@ -60,10 +60,7 @@ public class Main {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 if (board[i][j] == '>') {                                 //goes right
-                    if (board[i][(j + 1) % board[i].length] == 'v') {
-                        break;
-                    } else if (board[i][(j + 1) % board[i].length] != 'x') {
-
+                    if (board[i][(j + 1) % board[i].length] == '.') {
                         char tempJ = board[i][j];
                         board[i][j] = board[i][(j + 1) % board[i].length];
                         board[i][(j + 1) % board[i].length] = tempJ;
@@ -78,19 +75,18 @@ public class Main {
                         board[i][p] = board[i][(e + 1) % board[i].length];
                         board[i][(e + 1) % board[i].length] = tempJX;//  to escape 'x'
                         break;
+                    } else if (board[i][(j + 1) % board[i].length] == 'v' || board[i][(j + 1) % board[i].length] == '>') {
+                        break;
                     }
                 }
             }
         }
 
-// moving down v
 
-        for (int a = 0; a < board.length; a++) {
-            for (int b = 0; b < board[a].length; b++) {
-                if (board[a][b] == 'v') {                                        //goes down
-                    if (board[(a + 1) % board.length][b] == '>') {        // stops if >
-                        break;
-                    } else if (board[(a + 1) % board.length][b] != 'x') {
+        for (int b = 0; b < board[0].length; b++) {
+            for (int a = 0; a < board.length; a++) {
+                if (board[a][b] == 'v') {
+                    if (board[(a + 1) % board.length][b] == '.') {
                         char tempI = board[a][b];
                         board[a][b] = board[(a + 1) % board.length][b];
                         board[(a + 1) % board.length][b] = tempI;
@@ -100,10 +96,12 @@ public class Main {
                         int p = a;
                         while (board[(p + 1) % board.length][b] == 'x') {
                             p++;
-                        }                                                                      //  to escape 'x'
+                        }
                         char tempIX = board[o][b];
                         board[o][b] = board[(p + 1) % board.length][b];
                         board[(p + 1) % board.length][b] = tempIX;
+                        break;
+                    } else if (board[(a + 1) % board.length][b] == '>' || board[(a + 1) % board.length][b] == 'v') {        // stops if >
                         break;
                     }
                 }
