@@ -12,9 +12,10 @@ public class Main {
      String gameFile = "hummingbird_map.txt";
 
      char[][] board = readFile(gameFile);
-     game(board);
 
-//     char[][] arr = readFile(gameFile);
+        System.out.println(game(board));
+
+//     char[][] arr = readFile(gameFile);                         // checking how to scan a txt file into a 2D array
 //        for (int i = 0; i < arr.length; i++) {
 //            for (int j = 0; j < arr[i].length; j++) {
 //                System.out.print(arr[i][j]);
@@ -48,7 +49,7 @@ public class Main {
     }
 
 
-    public static void game(char[][] board) {
+    public static int game(char[][] board) {
         int rounds = 0;
 
         if (board.length == 1) {                                               // bird only moves in a row >
@@ -206,15 +207,14 @@ public class Main {
             }
         }
 
-
-
         for (int m = 0; m < board.length; m++) {                         // checking 2D array
             for (int n = 0; n < board[m].length; n++) {
                 System.out.print(board[m][n]);
             }
             System.out.println();
         }
-        System.out.println(rounds);
+
+        return rounds;
     }
 }
 
