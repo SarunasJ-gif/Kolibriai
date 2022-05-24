@@ -49,7 +49,7 @@ public class Main {
     }
 
 
-    public static int game(char[][] board) {
+    private static int game(char[][] board) {
         int rounds = 0;
 
         if (board.length == 1) {                                               // bird only moves in a row >
